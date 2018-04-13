@@ -4,4 +4,8 @@ class Point {
 		this.y = y;
 	}
 
+	add(p) {
+		this.x += p.x;
+		this.y += p.y;
+	}
 }
