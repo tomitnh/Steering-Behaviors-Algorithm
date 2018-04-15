@@ -24,10 +24,15 @@ for (var h in helloOutline) {
 
 // Register click listner
 canvas.addEventListener('mousedown', mouseDown);
+canvas.addEventListener('mouseover', mouseOver);
 
 function mouseDown(e) {
-	dots.push(new Point(e.x, e.y));
+	dots.push(new Vector(e.x, e.y));
 	console.log(e);
+}
+
+function mouseOver(e) {
+	console.log(e)
 }
 
 // Drawing dots onto a TextPath 
