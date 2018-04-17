@@ -1,12 +1,13 @@
 class Vehicle {
 	constructor (x, y) {
-		this.pos = new Vector(x, y);
+		var canvas = document.getElementById('canvas');
+		this.pos = new Vector(Math.random()*canvas.width, Math.random()*canvas.height);
 		this.target = new Vector(x, y);
-		// this.vel = new Vector(Math.random()*5, Math.random()*5);
-		this.vel = new Vector(0, 0);
+		this.vel = new Vector(Math.random()*5, Math.random()*5);
+		// this.vel = new Vector(0, 0);
 		this.acc = new Vector(0, 0);
 		this.r = 3;		// radius of the to-be-rendered circle
-		this.maxspeed = 5;
+		this.maxspeed = 1.5;
 	}
 
 	behaviors () {
@@ -19,16 +20,19 @@ class Vehicle {
 	}
 
 	seek (target) {
-		var desired = Vector.sub(target, this.pos);	// TODO
-		desired.setMag(this.maxspeed); // TODO
-		var steer = Vector.sub(desired, this.vel);
+		var desired = target.copy();
+		desired.sub(this.pos);
+		desired.setMag(this.maxspeed);
+
+		var steer = desired.copy();
+		steer.sub(this.vel);
 		return steer;
 	}
 
 	update () {
 		this.pos.add(this.vel);
 		this.vel.add(this.acc);
-		this.acc.mult(0); // TODO
+		this.acc.mult(0);
 	}
 
 	show () {

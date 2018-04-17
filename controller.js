@@ -24,7 +24,7 @@ for (var h in helloOutline) {
 
 // Register click listner
 canvas.addEventListener('mousedown', mouseDown);
-canvas.addEventListener('mouseover', mouseOver);
+// canvas.addEventListener('mouseover', mouseOver);
 
 function mouseDown(e) {
 	dots.push(new Vector(e.x, e.y));
@@ -49,6 +49,7 @@ function draw() {
 
 	for (var i in vehicles) {
 		var v = vehicles[i];
+		v.behaviors();
 		v.update()
 		v.show();
 	}
